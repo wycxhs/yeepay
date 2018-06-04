@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yeepay.dao.fileUpload.mapper.FileUploadMapper">
+  <resultMap id="BaseResultMap" type="com.yeepay.dao.fileUpload.domain.FileUpload">
+    <result column="id" jdbcType="INTEGER" property="id" />
+    <result column="file_type" jdbcType="VARCHAR" property="fileType" />
+    <result column="file_id" jdbcType="VARCHAR" property="fileId" />
+    <result column="app_key" jdbcType="VARCHAR" property="appKey" />
+    <result column="file_name" jdbcType="VARCHAR" property="fileName" />
+    <result column="file_size" jdbcType="VARCHAR" property="fileSize" />
+    <result column="file_location" jdbcType="VARCHAR" property="fileLocation" />
+    <result column="temp_storage" jdbcType="VARCHAR" property="tempStorage" />
+    <result column="md5" jdbcType="VARCHAR" property="md5" />
+    <result column="created_date_time" jdbcType="VARCHAR" property="createdDateTime" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.yeepay.dao.fileUpload.domain.FileUpload">
+    <result column="_file" jdbcType="LONGVARCHAR" property="file" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, file_type, file_id, app_key, file_name, file_size, file_location, temp_storage, 
+    md5, created_date_time
+  </sql>
+  <sql id="Blob_Column_List">
+    _file
+  </sql>
+  <select id="selectByExampleWithBLOBs" parameterType="com.yeepay.dao.fileUpload.domain.FileUploadExample" resultMap="ResultMapWithBLOBs">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from fileupload
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" parameterType="com.yeepay.dao.fileUpload.domain.FileUploadExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from fileupload
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+    <if test="limitStart>= 0">
+       limit ${limitStart} , ${limitLength}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.yeepay.dao.fileUpload.domain.FileUploadExample">
+    delete from fileupload
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.yeepay.dao.fileUpload.domain.FileUpload">
+    insert into fileupload (id, file_type, file_id, 
+      app_key, file_name, file_size, 
+      file_location, temp_storage, md5, 
+      created_date_time, _file)
+    values (#{id,jdbcType=INTEGER}, #{fileType,jdbcType=VARCHAR}, #{fileId,jdbcType=VARCHAR}, 
+      #{appKey,jdbcType=VARCHAR}, #{fileName,jdbcType=VARCHAR}, #{fileSize,jdbcType=VARCHAR}, 
+      #{fileLocation,jdbcType=VARCHAR}, #{tempStorage,jdbcType=VARCHAR}, #{md5,jdbcType=VARCHAR}, 
+      #{createdDateTime,jdbcType=VARCHAR}, #{file,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yeepay.dao.fileUpload.domain.FileUpload">
+    insert into fileupload
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="fileType != null">
+        file_type,
+      </if>
+      <if test="fileId != null">
+        file_id,
+      </if>
+      <if test="appKey != null">
+        app_key,
+      </if>
+      <if test="fileName != null">
+        file_name,
+      </if>
+      <if test="fileSize != null">
+        file_size,
+      </if>
+      <if test="fileLocation != null">
+        file_location,
+      </if>
+      <if test="tempStorage != null">
+        temp_storage,
+      </if>
+      <if test="md5 != null">
+        md5,
+      </if>
+      <if test="createdDateTime != null">
+        created_date_time,
+      </if>
+      <if test="file != null">
+        _file,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="fileType != null">
+        #{fileType,jdbcType=VARCHAR},
+      </if>
+      <if test="fileId != null">
+        #{fileId,jdbcType=VARCHAR},
+      </if>
+      <if test="appKey != null">
+        #{appKey,jdbcType=VARCHAR},
+      </if>
+      <if test="fileName != null">
+        #{fileName,jdbcType=VARCHAR},
+      </if>
+      <if test="fileSize != null">
+        #{fileSize,jdbcType=VARCHAR},
+      </if>
+      <if test="fileLocation != null">
+        #{fileLocation,jdbcType=VARCHAR},
+      </if>
+      <if test="tempStorage != null">
+        #{tempStorage,jdbcType=VARCHAR},
+      </if>
+      <if test="md5 != null">
+        #{md5,jdbcType=VARCHAR},
+      </if>
+      <if test="createdDateTime != null">
+        #{createdDateTime,jdbcType=VARCHAR},
+      </if>
+      <if test="file != null">
+        #{file,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.yeepay.dao.fileUpload.domain.FileUploadExample" resultType="java.lang.Long">
+    select count(*) from fileupload
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update fileupload
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.fileType != null">
+        file_type = #{record.fileType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fileId != null">
+        file_id = #{record.fileId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.appKey != null">
+        app_key = #{record.appKey,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fileName != null">
+        file_name = #{record.fileName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fileSize != null">
+        file_size = #{record.fileSize,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fileLocation != null">
+        file_location = #{record.fileLocation,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tempStorage != null">
+        temp_storage = #{record.tempStorage,jdbcType=VARCHAR},
+      </if>
+      <if test="record.md5 != null">
+        md5 = #{record.md5,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createdDateTime != null">
+        created_date_time = #{record.createdDateTime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.file != null">
+        _file = #{record.file,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map">
+    update fileupload
+    set id = #{record.id,jdbcType=INTEGER},
+      file_type = #{record.fileType,jdbcType=VARCHAR},
+      file_id = #{record.fileId,jdbcType=VARCHAR},
+      app_key = #{record.appKey,jdbcType=VARCHAR},
+      file_name = #{record.fileName,jdbcType=VARCHAR},
+      file_size = #{record.fileSize,jdbcType=VARCHAR},
+      file_location = #{record.fileLocation,jdbcType=VARCHAR},
+      temp_storage = #{record.tempStorage,jdbcType=VARCHAR},
+      md5 = #{record.md5,jdbcType=VARCHAR},
+      created_date_time = #{record.createdDateTime,jdbcType=VARCHAR},
+      _file = #{record.file,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update fileupload
+    set id = #{record.id,jdbcType=INTEGER},
+      file_type = #{record.fileType,jdbcType=VARCHAR},
+      file_id = #{record.fileId,jdbcType=VARCHAR},
+      app_key = #{record.appKey,jdbcType=VARCHAR},
+      file_name = #{record.fileName,jdbcType=VARCHAR},
+      file_size = #{record.fileSize,jdbcType=VARCHAR},
+      file_location = #{record.fileLocation,jdbcType=VARCHAR},
+      temp_storage = #{record.tempStorage,jdbcType=VARCHAR},
+      md5 = #{record.md5,jdbcType=VARCHAR},
+      created_date_time = #{record.createdDateTime,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+</mapper>

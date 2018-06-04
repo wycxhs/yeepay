@@ -1,0 +1,28 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.5.3.RELEASE")
+    }
+}
+
+
+apply plugin: 'java'
+apply plugin: 'application'
+apply plugin: 'org.springframework.boot'
+
+repositories {
+    mavenLocal()
+    maven{ url "http://maven.aliyun.com/nexus/content/groups/public/"}
+    jcenter()
+}
+
+dependencies {
+
+    compile project(':yeepay-service')
+    compile project(':yeepay-common')
+
+    compile 'org.slf4j:slf4j-api:1.7.22'
+    testCompile 'junit:junit:4.12'
+}

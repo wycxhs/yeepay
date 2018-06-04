@@ -1,0 +1,15 @@
+apply plugin: 'java'
+
+repositories {
+    maven { url "http://maven.aliyun.com/nexus/content/groups/public" }
+    jcenter()
+}
+
+dependencies {
+    compile project(':yeepay-common')
+    compile project(':yeepay-framework')
+    compile project(':yeepay-dao')
+    compile project(':yeepay-web')
+    testCompile 'junit:junit:4.12'
+}
+

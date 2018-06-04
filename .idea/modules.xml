@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/yeepay.iml" filepath="$PROJECT_DIR$/.idea/modules/yeepay.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/yeepay-common/yeepay-common.iml" filepath="$PROJECT_DIR$/.idea/modules/yeepay-common/yeepay-common.iml" group="yeepay-common" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/yeepay-common/yeepay-common_main.iml" filepath="$PROJECT_DIR$/.idea/modules/yeepay-common/yeepay-common_main.iml" group="yeepay-common" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/yeepay-common/yeepay-common_test.iml" filepath="$PROJECT_DIR$/.idea/modules/yeepay-common/yeepay-common_test.iml" group="yeepay-common" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/yeepay-dao/yeepay-dao.iml" filepath="$PROJECT_DIR$/.idea/modules/yeepay-dao/yeepay-dao.iml" group="yeepay-dao" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/yeepay-dao/yeepay-dao_main.iml" filepath="$PROJECT_DIR$/.idea/modules/yeepay-dao/yeepay-dao_main.iml" group="yeepay-dao" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/yeepay-dao/yeepay-dao_test.iml" filepath="$PROJECT_DIR$/.idea/modules/yeepay-dao/yeepay-dao_test.iml" group="yeepay-dao" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/yeepay-framework/yeepay-framework.iml" filepath="$PROJECT_DIR$/.idea/modules/yeepay-framework/yeepay-framework.iml" group="yeepay-framework" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/yeepay-framework/yeepay-framework_main.iml" filepath="$PROJECT_DIR$/.idea/modules/yeepay-framework/yeepay-framework_main.iml" group="yeepay-framework" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/yeepay-framework/yeepay-framework_test.iml" filepath="$PROJECT_DIR$/.idea/modules/yeepay-framework/yeepay-framework_test.iml" group="yeepay-framework" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/yeepay-service/yeepay-service.iml" filepath="$PROJECT_DIR$/.idea/modules/yeepay-service/yeepay-service.iml" group="yeepay-service" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/yeepay-service/yeepay-service_main.iml" filepath="$PROJECT_DIR$/.idea/modules/yeepay-service/yeepay-service_main.iml" group="yeepay-service" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/yeepay-service/yeepay-service_test.iml" filepath="$PROJECT_DIR$/.idea/modules/yeepay-service/yeepay-service_test.iml" group="yeepay-service" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/yeepay-web/yeepay-web.iml" filepath="$PROJECT_DIR$/.idea/modules/yeepay-web/yeepay-web.iml" group="yeepay-web" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/yeepay-web/yeepay-web_main.iml" filepath="$PROJECT_DIR$/.idea/modules/yeepay-web/yeepay-web_main.iml" group="yeepay-web" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/yeepay-web/yeepay-web_test.iml" filepath="$PROJECT_DIR$/.idea/modules/yeepay-web/yeepay-web_test.iml" group="yeepay-web" />
+    </modules>
+  </component>
+</project>

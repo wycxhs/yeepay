@@ -1,0 +1,333 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yeepay.dao.refund.mapper.RefundMapper">
+  <resultMap id="BaseResultMap" type="com.yeepay.dao.refund.domain.Refund">
+    <result column="id" jdbcType="INTEGER" property="id" />
+    <result column="merchant_no" jdbcType="VARCHAR" property="merchantNo" />
+    <result column="parent_merchant_no" jdbcType="VARCHAR" property="parentMerchantNo" />
+    <result column="order_id" jdbcType="VARCHAR" property="orderId" />
+    <result column="unique_order_no" jdbcType="VARCHAR" property="uniqueOrderNo" />
+    <result column="hmac" jdbcType="VARCHAR" property="hmac" />
+    <result column="code" jdbcType="VARCHAR" property="code" />
+    <result column="message" jdbcType="VARCHAR" property="message" />
+    <result column="status" jdbcType="VARCHAR" property="status" />
+    <result column="memo" jdbcType="VARCHAR" property="memo" />
+    <result column="refund_request_id" jdbcType="VARCHAR" property="refundRequestId" />
+    <result column="description" jdbcType="VARCHAR" property="description" />
+    <result column="notify_url" jdbcType="VARCHAR" property="notifyUrl" />
+    <result column="account_divided" jdbcType="VARCHAR" property="accountDivided" />
+    <result column="unique_refund_no" jdbcType="VARCHAR" property="uniqueRefundNo" />
+    <result column="refund_amount" jdbcType="VARCHAR" property="refundAmount" />
+    <result column="residual_amount" jdbcType="VARCHAR" property="residualAmount" />
+    <result column="refund_request_date" jdbcType="VARCHAR" property="refundRequestDate" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, merchant_no, parent_merchant_no, order_id, unique_order_no, hmac, code, message, 
+    status, memo, refund_request_id, description, notify_url, account_divided, unique_refund_no, 
+    refund_amount, residual_amount, refund_request_date
+  </sql>
+  <select id="selectByExample" parameterType="com.yeepay.dao.refund.domain.RefundExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from refund
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+    <if test="limitStart>= 0">
+       limit ${limitStart} , ${limitLength}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.yeepay.dao.refund.domain.RefundExample">
+    delete from refund
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.yeepay.dao.refund.domain.Refund">
+    insert into refund (id, merchant_no, parent_merchant_no, 
+      order_id, unique_order_no, hmac, 
+      code, message, status, 
+      memo, refund_request_id, description, 
+      notify_url, account_divided, unique_refund_no, 
+      refund_amount, residual_amount, refund_request_date
+      )
+    values (#{id,jdbcType=INTEGER}, #{merchantNo,jdbcType=VARCHAR}, #{parentMerchantNo,jdbcType=VARCHAR}, 
+      #{orderId,jdbcType=VARCHAR}, #{uniqueOrderNo,jdbcType=VARCHAR}, #{hmac,jdbcType=VARCHAR}, 
+      #{code,jdbcType=VARCHAR}, #{message,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, 
+      #{memo,jdbcType=VARCHAR}, #{refundRequestId,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, 
+      #{notifyUrl,jdbcType=VARCHAR}, #{accountDivided,jdbcType=VARCHAR}, #{uniqueRefundNo,jdbcType=VARCHAR}, 
+      #{refundAmount,jdbcType=VARCHAR}, #{residualAmount,jdbcType=VARCHAR}, #{refundRequestDate,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.yeepay.dao.refund.domain.Refund">
+    insert into refund
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="merchantNo != null">
+        merchant_no,
+      </if>
+      <if test="parentMerchantNo != null">
+        parent_merchant_no,
+      </if>
+      <if test="orderId != null">
+        order_id,
+      </if>
+      <if test="uniqueOrderNo != null">
+        unique_order_no,
+      </if>
+      <if test="hmac != null">
+        hmac,
+      </if>
+      <if test="code != null">
+        code,
+      </if>
+      <if test="message != null">
+        message,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="memo != null">
+        memo,
+      </if>
+      <if test="refundRequestId != null">
+        refund_request_id,
+      </if>
+      <if test="description != null">
+        description,
+      </if>
+      <if test="notifyUrl != null">
+        notify_url,
+      </if>
+      <if test="accountDivided != null">
+        account_divided,
+      </if>
+      <if test="uniqueRefundNo != null">
+        unique_refund_no,
+      </if>
+      <if test="refundAmount != null">
+        refund_amount,
+      </if>
+      <if test="residualAmount != null">
+        residual_amount,
+      </if>
+      <if test="refundRequestDate != null">
+        refund_request_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="merchantNo != null">
+        #{merchantNo,jdbcType=VARCHAR},
+      </if>
+      <if test="parentMerchantNo != null">
+        #{parentMerchantNo,jdbcType=VARCHAR},
+      </if>
+      <if test="orderId != null">
+        #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="uniqueOrderNo != null">
+        #{uniqueOrderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="hmac != null">
+        #{hmac,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null">
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="message != null">
+        #{message,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="memo != null">
+        #{memo,jdbcType=VARCHAR},
+      </if>
+      <if test="refundRequestId != null">
+        #{refundRequestId,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null">
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="notifyUrl != null">
+        #{notifyUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="accountDivided != null">
+        #{accountDivided,jdbcType=VARCHAR},
+      </if>
+      <if test="uniqueRefundNo != null">
+        #{uniqueRefundNo,jdbcType=VARCHAR},
+      </if>
+      <if test="refundAmount != null">
+        #{refundAmount,jdbcType=VARCHAR},
+      </if>
+      <if test="residualAmount != null">
+        #{residualAmount,jdbcType=VARCHAR},
+      </if>
+      <if test="refundRequestDate != null">
+        #{refundRequestDate,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.yeepay.dao.refund.domain.RefundExample" resultType="java.lang.Long">
+    select count(*) from refund
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update refund
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.merchantNo != null">
+        merchant_no = #{record.merchantNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.parentMerchantNo != null">
+        parent_merchant_no = #{record.parentMerchantNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orderId != null">
+        order_id = #{record.orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.uniqueOrderNo != null">
+        unique_order_no = #{record.uniqueOrderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.hmac != null">
+        hmac = #{record.hmac,jdbcType=VARCHAR},
+      </if>
+      <if test="record.code != null">
+        code = #{record.code,jdbcType=VARCHAR},
+      </if>
+      <if test="record.message != null">
+        message = #{record.message,jdbcType=VARCHAR},
+      </if>
+      <if test="record.status != null">
+        status = #{record.status,jdbcType=VARCHAR},
+      </if>
+      <if test="record.memo != null">
+        memo = #{record.memo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.refundRequestId != null">
+        refund_request_id = #{record.refundRequestId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.description != null">
+        description = #{record.description,jdbcType=VARCHAR},
+      </if>
+      <if test="record.notifyUrl != null">
+        notify_url = #{record.notifyUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.accountDivided != null">
+        account_divided = #{record.accountDivided,jdbcType=VARCHAR},
+      </if>
+      <if test="record.uniqueRefundNo != null">
+        unique_refund_no = #{record.uniqueRefundNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.refundAmount != null">
+        refund_amount = #{record.refundAmount,jdbcType=VARCHAR},
+      </if>
+      <if test="record.residualAmount != null">
+        residual_amount = #{record.residualAmount,jdbcType=VARCHAR},
+      </if>
+      <if test="record.refundRequestDate != null">
+        refund_request_date = #{record.refundRequestDate,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update refund
+    set id = #{record.id,jdbcType=INTEGER},
+      merchant_no = #{record.merchantNo,jdbcType=VARCHAR},
+      parent_merchant_no = #{record.parentMerchantNo,jdbcType=VARCHAR},
+      order_id = #{record.orderId,jdbcType=VARCHAR},
+      unique_order_no = #{record.uniqueOrderNo,jdbcType=VARCHAR},
+      hmac = #{record.hmac,jdbcType=VARCHAR},
+      code = #{record.code,jdbcType=VARCHAR},
+      message = #{record.message,jdbcType=VARCHAR},
+      status = #{record.status,jdbcType=VARCHAR},
+      memo = #{record.memo,jdbcType=VARCHAR},
+      refund_request_id = #{record.refundRequestId,jdbcType=VARCHAR},
+      description = #{record.description,jdbcType=VARCHAR},
+      notify_url = #{record.notifyUrl,jdbcType=VARCHAR},
+      account_divided = #{record.accountDivided,jdbcType=VARCHAR},
+      unique_refund_no = #{record.uniqueRefundNo,jdbcType=VARCHAR},
+      refund_amount = #{record.refundAmount,jdbcType=VARCHAR},
+      residual_amount = #{record.residualAmount,jdbcType=VARCHAR},
+      refund_request_date = #{record.refundRequestDate,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+</mapper>

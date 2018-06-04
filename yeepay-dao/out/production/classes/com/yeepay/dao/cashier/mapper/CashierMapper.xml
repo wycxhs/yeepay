@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yeepay.dao.cashier.mapper.CashierMapper">
+  <resultMap id="BaseResultMap" type="com.yeepay.dao.cashier.domain.Cashier">
+    <result column="id" jdbcType="INTEGER" property="id" />
+    <result column="merchant_no" jdbcType="VARCHAR" property="merchantNo" />
+    <result column="token" jdbcType="VARCHAR" property="token" />
+    <result column="time_stamp" jdbcType="VARCHAR" property="timeStamp" />
+    <result column="direct_pay_type" jdbcType="VARCHAR" property="directPayType" />
+    <result column="card_type" jdbcType="VARCHAR" property="cardType" />
+    <result column="user_no" jdbcType="VARCHAR" property="userNo" />
+    <result column="user_type" jdbcType="VARCHAR" property="userType" />
+    <result column="ext" jdbcType="VARCHAR" property="ext" />
+    <result column="sign" jdbcType="VARCHAR" property="sign" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, merchant_no, token, time_stamp, direct_pay_type, card_type, user_no, user_type, 
+    ext, sign
+  </sql>
+  <select id="selectByExample" parameterType="com.yeepay.dao.cashier.domain.CashierExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from cashier
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+    <if test="limitStart>= 0">
+       limit ${limitStart} , ${limitLength}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.yeepay.dao.cashier.domain.CashierExample">
+    delete from cashier
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.yeepay.dao.cashier.domain.Cashier">
+    insert into cashier (id, merchant_no, token, 
+      time_stamp, direct_pay_type, card_type, 
+      user_no, user_type, ext, 
+      sign)
+    values (#{id,jdbcType=INTEGER}, #{merchantNo,jdbcType=VARCHAR}, #{token,jdbcType=VARCHAR}, 
+      #{timeStamp,jdbcType=VARCHAR}, #{directPayType,jdbcType=VARCHAR}, #{cardType,jdbcType=VARCHAR}, 
+      #{userNo,jdbcType=VARCHAR}, #{userType,jdbcType=VARCHAR}, #{ext,jdbcType=VARCHAR}, 
+      #{sign,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yeepay.dao.cashier.domain.Cashier">
+    insert into cashier
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="merchantNo != null">
+        merchant_no,
+      </if>
+      <if test="token != null">
+        token,
+      </if>
+      <if test="timeStamp != null">
+        time_stamp,
+      </if>
+      <if test="directPayType != null">
+        direct_pay_type,
+      </if>
+      <if test="cardType != null">
+        card_type,
+      </if>
+      <if test="userNo != null">
+        user_no,
+      </if>
+      <if test="userType != null">
+        user_type,
+      </if>
+      <if test="ext != null">
+        ext,
+      </if>
+      <if test="sign != null">
+        sign,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="merchantNo != null">
+        #{merchantNo,jdbcType=VARCHAR},
+      </if>
+      <if test="token != null">
+        #{token,jdbcType=VARCHAR},
+      </if>
+      <if test="timeStamp != null">
+        #{timeStamp,jdbcType=VARCHAR},
+      </if>
+      <if test="directPayType != null">
+        #{directPayType,jdbcType=VARCHAR},
+      </if>
+      <if test="cardType != null">
+        #{cardType,jdbcType=VARCHAR},
+      </if>
+      <if test="userNo != null">
+        #{userNo,jdbcType=VARCHAR},
+      </if>
+      <if test="userType != null">
+        #{userType,jdbcType=VARCHAR},
+      </if>
+      <if test="ext != null">
+        #{ext,jdbcType=VARCHAR},
+      </if>
+      <if test="sign != null">
+        #{sign,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.yeepay.dao.cashier.domain.CashierExample" resultType="java.lang.Long">
+    select count(*) from cashier
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update cashier
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.merchantNo != null">
+        merchant_no = #{record.merchantNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.token != null">
+        token = #{record.token,jdbcType=VARCHAR},
+      </if>
+      <if test="record.timeStamp != null">
+        time_stamp = #{record.timeStamp,jdbcType=VARCHAR},
+      </if>
+      <if test="record.directPayType != null">
+        direct_pay_type = #{record.directPayType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cardType != null">
+        card_type = #{record.cardType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userNo != null">
+        user_no = #{record.userNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userType != null">
+        user_type = #{record.userType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ext != null">
+        ext = #{record.ext,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sign != null">
+        sign = #{record.sign,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update cashier
+    set id = #{record.id,jdbcType=INTEGER},
+      merchant_no = #{record.merchantNo,jdbcType=VARCHAR},
+      token = #{record.token,jdbcType=VARCHAR},
+      time_stamp = #{record.timeStamp,jdbcType=VARCHAR},
+      direct_pay_type = #{record.directPayType,jdbcType=VARCHAR},
+      card_type = #{record.cardType,jdbcType=VARCHAR},
+      user_no = #{record.userNo,jdbcType=VARCHAR},
+      user_type = #{record.userType,jdbcType=VARCHAR},
+      ext = #{record.ext,jdbcType=VARCHAR},
+      sign = #{record.sign,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+</mapper>

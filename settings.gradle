@@ -1,0 +1,6 @@
+rootProject.name = 'yeepay'
+include 'yeepay-framework'
+include 'yeepay-common'
+include 'yeepay-dao'
+include 'yeepay-service'
+include 'yeepay-web'

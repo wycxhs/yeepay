@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yeepay.dao.sendMerSmsNotify.mapper.SendMerSmsNotifyMapper">
+  <resultMap id="BaseResultMap" type="com.yeepay.dao.sendMerSmsNotify.domain.SendMerSmsNotify">
+    <result column="id" jdbcType="INTEGER" property="id" />
+    <result column="parent_merchant_no" jdbcType="VARCHAR" property="parentMerchantNo" />
+    <result column="merchant_no" jdbcType="VARCHAR" property="merchantNo" />
+    <result column="return_code" jdbcType="VARCHAR" property="returnCode" />
+    <result column="return_msg" jdbcType="VARCHAR" property="returnMsg" />
+    <result column="phone" jdbcType="VARCHAR" property="phone" />
+    <result column="source_type" jdbcType="VARCHAR" property="sourceType" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, parent_merchant_no, merchant_no, return_code, return_msg, phone, source_type
+  </sql>
+  <select id="selectByExample" parameterType="com.yeepay.dao.sendMerSmsNotify.domain.SendMerSmsNotifyExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from send_mer_sms_notify
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+    <if test="limitStart>= 0">
+       limit ${limitStart} , ${limitLength}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.yeepay.dao.sendMerSmsNotify.domain.SendMerSmsNotifyExample">
+    delete from send_mer_sms_notify
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.yeepay.dao.sendMerSmsNotify.domain.SendMerSmsNotify">
+    insert into send_mer_sms_notify (id, parent_merchant_no, merchant_no, 
+      return_code, return_msg, phone, 
+      source_type)
+    values (#{id,jdbcType=INTEGER}, #{parentMerchantNo,jdbcType=VARCHAR}, #{merchantNo,jdbcType=VARCHAR}, 
+      #{returnCode,jdbcType=VARCHAR}, #{returnMsg,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, 
+      #{sourceType,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yeepay.dao.sendMerSmsNotify.domain.SendMerSmsNotify">
+    insert into send_mer_sms_notify
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="parentMerchantNo != null">
+        parent_merchant_no,
+      </if>
+      <if test="merchantNo != null">
+        merchant_no,
+      </if>
+      <if test="returnCode != null">
+        return_code,
+      </if>
+      <if test="returnMsg != null">
+        return_msg,
+      </if>
+      <if test="phone != null">
+        phone,
+      </if>
+      <if test="sourceType != null">
+        source_type,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="parentMerchantNo != null">
+        #{parentMerchantNo,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantNo != null">
+        #{merchantNo,jdbcType=VARCHAR},
+      </if>
+      <if test="returnCode != null">
+        #{returnCode,jdbcType=VARCHAR},
+      </if>
+      <if test="returnMsg != null">
+        #{returnMsg,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="sourceType != null">
+        #{sourceType,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.yeepay.dao.sendMerSmsNotify.domain.SendMerSmsNotifyExample" resultType="java.lang.Long">
+    select count(*) from send_mer_sms_notify
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update send_mer_sms_notify
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.parentMerchantNo != null">
+        parent_merchant_no = #{record.parentMerchantNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.merchantNo != null">
+        merchant_no = #{record.merchantNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.returnCode != null">
+        return_code = #{record.returnCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.returnMsg != null">
+        return_msg = #{record.returnMsg,jdbcType=VARCHAR},
+      </if>
+      <if test="record.phone != null">
+        phone = #{record.phone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sourceType != null">
+        source_type = #{record.sourceType,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update send_mer_sms_notify
+    set id = #{record.id,jdbcType=INTEGER},
+      parent_merchant_no = #{record.parentMerchantNo,jdbcType=VARCHAR},
+      merchant_no = #{record.merchantNo,jdbcType=VARCHAR},
+      return_code = #{record.returnCode,jdbcType=VARCHAR},
+      return_msg = #{record.returnMsg,jdbcType=VARCHAR},
+      phone = #{record.phone,jdbcType=VARCHAR},
+      source_type = #{record.sourceType,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+</mapper>

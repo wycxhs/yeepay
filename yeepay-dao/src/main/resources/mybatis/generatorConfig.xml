@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<!-- 配置生成器 -->
+<generatorConfiguration>
+
+	<!-- 引入配置文件 -->
+	<!-- <properties resource="config/db.properties" /> -->
+	<!--
+     -->
+	<classPathEntry location="C:\mysql-connector-java-8.0.11\mysql-connector-java-8.0.11.jar" />
+
+	<!-- 定义生成对象的默认值 -->
+	<context id="testTables" targetRuntime="MyBatis3">
+		<property name="mergeable" value="false" />
+
+		<!-- 引入分页插件 -->
+		<plugin type="com.mybatis.plugin.PaginationPlugin"></plugin>
+		<!-- 生成兼容MyBatis 3.0或更高版本， 兼容JSE 5.0或更高版本的对象 -->
+		<!-- 这里引入扩展插件 -->
+		<commentGenerator>
+			<!-- 是否去除自动生成的注释 true：是 ： false:否 -->
+			<property name="suppressAllComments" value="true" />
+		</commentGenerator>
+
+		<jdbcConnection driverClass="com.mysql.cj.jdbc.Driver"
+						connectionURL="jdbc:mysql://localhost:3306/yeepay?serverTimezone=UTC"
+						userId="root"
+						password="">
+		</jdbcConnection>
+
+		<!-- 默认false，把JDBC decimal 和 numeric 类型解析为 Integer，为 true时把JDBC DECIMAL
+			和 NUMERIC 类型解析为java.math.BigDecimal -->
+		<javaTypeResolver>
+			<property name="forceBigDecimals" value="true" />
+		</javaTypeResolver>
+
+		<!-- targetProject:生成entity类的位置 -->
+		<javaModelGenerator targetPackage="com.yeepay.dao.fileUpload.domain"
+							targetProject="src/main/java">
+							<!--targetProject="wallet-open-dao/src/main/java">-->
+			<!-- enableSubPackages:是否让schema作为包的后缀 -->
+			<property name="enableSubPackages" value="false" />
+
+			<!-- 从数据库返回的值被清理前后的空格 -->
+			<property name="trimStrings" value="true" />
+		</javaModelGenerator>
+
+		<!-- targetProject:mapper映射文件生成的位置 -->
+		<sqlMapGenerator targetPackage="com.yeepay.dao.fileUpload.mapper"
+						 targetProject="src/main/java">
+						 <!--targetProject="wallet-open-dao/src/main/java">-->
+			<!-- enableSubPackages:是否让schema作为包的后缀 -->
+			<property name="enableSubPackages" value="false" />
+		</sqlMapGenerator>
+		<!-- targetPackage：mapper接口生成的位置 -->
+		<!-- annotatedmapper：使用注解纯接口无xml XMLMAPPER -->
+		<javaClientGenerator type="XMLMAPPER"
+							 targetPackage="com.yeepay.dao.fileUpload.mapper"
+							 targetProject="src/main/java">
+							 <!--targetProject="wallet-open-dao/src/main/java">-->
+			<!-- enableSubPackages:是否让schema作为包的后缀 -->
+			<property name="enableSubPackages" value="false" />
+		</javaClientGenerator>
+
+		<!-- 指定数据库表 -->
+
+		<!--<table tableName="agree_info_query" domainObjectName="AgreeInfoQuery" />-->
+		<!--<table tableName="api_pay" domainObjectName="ApiPay" />-->
+        <!--<table tableName="authorize_url_query" domainObjectName="AuthorizeUrlQuery" />-->
+        <!--<table tableName="balance_query" domainObjectName="BalanceQuery" />-->
+        <!--<table tableName="bank_branch_info" domainObjectName="BankBranchInfo" />-->
+        <!--<table tableName="cashier" domainObjectName="Cashier" />-->
+        <!--<table tableName="cs_notify" domainObjectName="CsNotify" />-->
+        <!--<table tableName="divide" domainObjectName="Divide" />-->
+        <!--<table tableName="divide_notify" domainObjectName="DivideNotify" />-->
+        <!--<table tableName="divide_query" domainObjectName="DivideQuery" />-->
+        <!--<table tableName="enterprise" domainObjectName="Enterprise" />-->
+        <table tableName="fileupload" domainObjectName="FileUpload" />
+        <!--<table tableName="full_settle" domainObjectName="FullSettle" />-->
+        <!--<table tableName="hmackey_query" domainObjectName="HmackeyQuery" />-->
+        <!--<table tableName="individual" domainObjectName="Individual" />-->
+        <!--<table tableName="individual_bussiness" domainObjectName="IndividualBussiness" />-->
+        <!--<table tableName="mer_settle_info_update" domainObjectName="MerSettleInfoUpdate" />-->
+        <!--<table tableName="mer_product_fee_update" domainObjectName="MerProductFeeUpdate" />-->
+        <!--<table tableName="multi_refund_query" domainObjectName="MultiRefundQuery" />-->
+        <!--<table tableName="network_audit_notify" domainObjectName="NetworkAuditNotify" />-->
+        <!--<table tableName="order_close" domainObjectName="OrderClose" />-->
+        <!--<table tableName="order_query" domainObjectName="OrderQuery" />-->
+        <!--<table tableName="pay_notify" domainObjectName="PayNotify" />-->
+        <!--<table tableName="receive_authorize_num" domainObjectName="ReceiveAuthorizeNum" />-->
+        <!--<table tableName="reconciliation" domainObjectName="Reconciliation" />-->
+        <!--<table tableName="redirect_url" domainObjectName="RedirectUrl" />-->
+        <!--<table tableName="refund" domainObjectName="Refund" />-->
+        <!--<table tableName="refund_notify" domainObjectName="RefundNotify" />-->
+        <!--<table tableName="refund_query" domainObjectName="RefundQuery" />-->
+        <!--<table tableName="reg_status_query" domainObjectName="RegStatusQuery" />-->
+        <!--<table tableName="send_mer_sms_notify" domainObjectName="SendMerSmsNotify" />-->
+        <!--<table tableName="settlements_query" domainObjectName="SettlementsQuery" />-->
+        <!--<table tableName="trade_order" domainObjectName="TradeOrder" />-->
+		<!--<table tableName="merchant_copy" domainObjectName="MerchantCopy" />-->
+        <!--<table tableName="send_authorize_num" domainObjectName="SendAuthorizeNum" />-->
+
+
+    </context>
+</generatorConfiguration>

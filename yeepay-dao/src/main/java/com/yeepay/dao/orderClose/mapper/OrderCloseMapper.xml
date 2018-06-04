@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yeepay.dao.orderClose.mapper.OrderCloseMapper">
+  <resultMap id="BaseResultMap" type="com.yeepay.dao.orderClose.domain.OrderClose">
+    <result column="id" jdbcType="INTEGER" property="id" />
+    <result column="merchant_no" jdbcType="VARCHAR" property="merchantNo" />
+    <result column="parent_merchant_no" jdbcType="VARCHAR" property="parentMerchantNo" />
+    <result column="order_id" jdbcType="VARCHAR" property="orderId" />
+    <result column="unique_order_no" jdbcType="VARCHAR" property="uniqueOrderNo" />
+    <result column="hmac" jdbcType="VARCHAR" property="hmac" />
+    <result column="code" jdbcType="VARCHAR" property="code" />
+    <result column="message" jdbcType="VARCHAR" property="message" />
+    <result column="description" jdbcType="VARCHAR" property="description" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, merchant_no, parent_merchant_no, order_id, unique_order_no, hmac, code, message, 
+    description
+  </sql>
+  <select id="selectByExample" parameterType="com.yeepay.dao.orderClose.domain.OrderCloseExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from order_close
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+    <if test="limitStart>= 0">
+       limit ${limitStart} , ${limitLength}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.yeepay.dao.orderClose.domain.OrderCloseExample">
+    delete from order_close
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.yeepay.dao.orderClose.domain.OrderClose">
+    insert into order_close (id, merchant_no, parent_merchant_no, 
+      order_id, unique_order_no, hmac, 
+      code, message, description
+      )
+    values (#{id,jdbcType=INTEGER}, #{merchantNo,jdbcType=VARCHAR}, #{parentMerchantNo,jdbcType=VARCHAR}, 
+      #{orderId,jdbcType=VARCHAR}, #{uniqueOrderNo,jdbcType=VARCHAR}, #{hmac,jdbcType=VARCHAR}, 
+      #{code,jdbcType=VARCHAR}, #{message,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.yeepay.dao.orderClose.domain.OrderClose">
+    insert into order_close
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="merchantNo != null">
+        merchant_no,
+      </if>
+      <if test="parentMerchantNo != null">
+        parent_merchant_no,
+      </if>
+      <if test="orderId != null">
+        order_id,
+      </if>
+      <if test="uniqueOrderNo != null">
+        unique_order_no,
+      </if>
+      <if test="hmac != null">
+        hmac,
+      </if>
+      <if test="code != null">
+        code,
+      </if>
+      <if test="message != null">
+        message,
+      </if>
+      <if test="description != null">
+        description,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="merchantNo != null">
+        #{merchantNo,jdbcType=VARCHAR},
+      </if>
+      <if test="parentMerchantNo != null">
+        #{parentMerchantNo,jdbcType=VARCHAR},
+      </if>
+      <if test="orderId != null">
+        #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="uniqueOrderNo != null">
+        #{uniqueOrderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="hmac != null">
+        #{hmac,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null">
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="message != null">
+        #{message,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null">
+        #{description,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.yeepay.dao.orderClose.domain.OrderCloseExample" resultType="java.lang.Long">
+    select count(*) from order_close
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update order_close
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.merchantNo != null">
+        merchant_no = #{record.merchantNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.parentMerchantNo != null">
+        parent_merchant_no = #{record.parentMerchantNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orderId != null">
+        order_id = #{record.orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.uniqueOrderNo != null">
+        unique_order_no = #{record.uniqueOrderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.hmac != null">
+        hmac = #{record.hmac,jdbcType=VARCHAR},
+      </if>
+      <if test="record.code != null">
+        code = #{record.code,jdbcType=VARCHAR},
+      </if>
+      <if test="record.message != null">
+        message = #{record.message,jdbcType=VARCHAR},
+      </if>
+      <if test="record.description != null">
+        description = #{record.description,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update order_close
+    set id = #{record.id,jdbcType=INTEGER},
+      merchant_no = #{record.merchantNo,jdbcType=VARCHAR},
+      parent_merchant_no = #{record.parentMerchantNo,jdbcType=VARCHAR},
+      order_id = #{record.orderId,jdbcType=VARCHAR},
+      unique_order_no = #{record.uniqueOrderNo,jdbcType=VARCHAR},
+      hmac = #{record.hmac,jdbcType=VARCHAR},
+      code = #{record.code,jdbcType=VARCHAR},
+      message = #{record.message,jdbcType=VARCHAR},
+      description = #{record.description,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+</mapper>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="yeepay-dao" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="acquiring-bx-common_main" target="1.8" />
+      <module name="acquiring-bx-common_test" target="1.8" />
+      <module name="acquiring-bx-dao_main" target="1.8" />
+      <module name="acquiring-bx-dao_test" target="1.8" />
+      <module name="acquiring-bx-framework_main" target="1.8" />
+      <module name="acquiring-bx-framework_test" target="1.8" />
+      <module name="acquiring-bx-service_main" target="1.8" />
+      <module name="acquiring-bx-service_test" target="1.8" />
+      <module name="acquiring-bx-web_main" target="1.8" />
+      <module name="acquiring-bx-web_test" target="1.8" />
+      <module name="yeepay-common_main" target="1.8" />
+      <module name="yeepay-common_test" target="1.8" />
+      <module name="yeepay-dao" target="1.5" />
+      <module name="yeepay-dao_main" target="1.8" />
+      <module name="yeepay-dao_test" target="1.8" />
+      <module name="yeepay-framework_main" target="1.8" />
+      <module name="yeepay-framework_test" target="1.8" />
+      <module name="yeepay-service_main" target="1.8" />
+      <module name="yeepay-service_test" target="1.8" />
+      <module name="yeepay-web_main" target="1.8" />
+      <module name="yeepay-web_test" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>
